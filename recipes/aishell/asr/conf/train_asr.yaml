@@ -1,0 +1,39 @@
+# acoustic model architecture
+net:
+  type: "conformer"
+  lossfn: "crf"
+  lamb: 0.01
+  net_conf:
+    num_cells: 16
+    idim: 120
+    hdim: 256
+    conv_multiplier: 256
+    num_classes: 218
+    num_heads: 8
+    delta_feats: false
+
+specaug_conf:
+  time_wrap_window: 0.2
+  freq_mask_width_range: 0.12
+  num_freq_rank: 2
+  time_mask_width_range: 0.05
+  num_time_mask: 4
+
+scheduler:
+  type: "scheduler_transformer_early_stop"
+  scheduler_conf:
+    peak_factor: 1.0
+    d_model: 360
+    warmup_steps: 4e4
+    lr_stop: 1e-08
+    gamma: 0.5
+    reverse_metric_direc: true
+
+  optimizer:
+    type_optim: "Adam"
+    optim_conf:
+      lr: 3e-04
+      betas:
+      - 0.9
+      - 0.98
+      weight_decay: 1e-06
