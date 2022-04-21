@@ -8,7 +8,7 @@ Welcome to CATEX's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Tutorial:
+   :caption: INTRO:
 
    ./install.md
    ./install_ch.md
